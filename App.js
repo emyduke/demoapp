@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, useWindowDimensions } from 'react-native';
+import { Reader, ReaderProvider } from 'epubjs-react-native';
 
 
 
@@ -10,15 +11,21 @@ class App extends React.Component {
     this.state = {
 
     }
-
+  
   }
 
 
   render() {
     return (
-      <View>
-        <Text>Hi, hello</Text>
-      </View>
+      <SafeAreaView>
+      <ReaderProvider>
+        <Reader
+          src={{ uri: 'https://s3.amazonaws.com/epubjs/books/moby-dick.epub' }}
+          width={400}
+          height={800}
+        />
+      </ReaderProvider>
+    </SafeAreaView>
     )
 
   }
